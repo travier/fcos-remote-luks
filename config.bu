@@ -20,3 +20,8 @@ storage:
       format: xfs
       wipe_filesystem: true
       label: root
+  files:
+    - path: /var/supersecret
+      overwrite: true
+      contents:
+        inline: Schtroumpf!
