@@ -1,0 +1,22 @@
+variant: fcos
+version: 1.4.0
+passwd:
+  users:
+    - name: core
+      password_hash: $y$j9T$olqEnUo0IDevlLKg.8TgK0$JWEVZm25FHA.LYdWgckIQuULOPhbMMk.wQJx3nXU9u6
+storage:
+  luks:
+    - name: root
+      label: luks-root
+      device: /dev/disk/by-partlabel/root
+      clevis:
+        custom:
+          needs_network: false
+          pin: tpm2
+          config: '{"pcr_bank":"sha1","pcr_ids":"7"}'
+      wipe_volume: true
+  filesystems:
+    - device: /dev/mapper/root
+      format: xfs
+      wipe_filesystem: true
+      label: root
